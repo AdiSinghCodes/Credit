@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Excellence - Inspiring Leaders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .leader-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .leader-card:hover::before {
+            left: 100%;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .leader-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #666;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .leader-card:hover .leader-image {
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .leader-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .leader-title {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+        
+        .leader-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            border-left: 4px solid #ff6b6b;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .leader-quote::before {
+            content: '"';
+            font-size: 3rem;
+            color: #ff6b6b;
+            position: absolute;
+            left: -0.5rem;
+            top: -1rem;
+        }
+        
+        .video-section {
+            background: rgba(0, 0, 0, 0.3);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-placeholder:hover {
+            transform: scale(1.05);
+        }
+        
+        .video-title {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .quotes-section {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+        }
+        
+        .quote-carousel {
+            text-align: center;
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .quote-item {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            padding: 2rem;
+        }
+        
+        .quote-item.active {
+            opacity: 1;
+        }
+        
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .quote-author {
+            font-size: 1.2rem;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 3px 3px 6px rgba(0,0,0,0.3); }
+            to { text-shadow: 3px 3px 20px rgba(255,255,255,0.5); }
+        }
+        
+        .parallax {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { display: none; }
+            .leaders-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax"></div>
+    
+    <header>
+        <nav class="container">
+            <div class="logo">Leadership Excellence</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#leaders">Leaders</a></li>
+                <li><a href="#videos">Videos</a></li>
+                <li><a href="#quotes">Quotes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Leadership Excellence</h1>
+            <p>Discover the wisdom of history's greatest leaders</p>
+            <a href="#leaders" class="cta-button">Explore Leaders</a>
+        </div>
+    </section>
+
+    <section id="leaders" class="section">
+        <div class="container">
+            <h2 class="section-title">Great Leaders of History</h2>
+            
+            <div class="leaders-grid">
+                <div class="leader-card">
+                    <div class="leader-image">👑</div>
+                    <h3 class="leader-name">Nelson Mandela</h3>
+                    <p class="leader-title">Anti-Apartheid Revolutionary & President of South Africa</p>
+                    <blockquote class="leader-quote">
+                        "Education is the most powerful weapon which you can use to change the world."
+                    </blockquote>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-image">🎯</div>
+                    <h3 class="leader-name">Winston Churchill</h3>
+                    <p class="leader-title">Prime Minister of United Kingdom</p>
+                    <blockquote class="leader-quote">
+                        "Success is not final, failure is not fatal: it is the courage to continue that counts."
+                    </blockquote>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-image">🕊️</div>
+                    <h3 class="leader-name">Mahatma Gandhi</h3>
+                    <p class="leader-title">Leader of Indian Independence Movement</p>
+                    <blockquote class="leader-quote">
+                        "Be the change that you wish to see in the world."
+                    </blockquote>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-image">⚖️</div>
+                    <h3 class="leader-name">Martin Luther King Jr.</h3>
+                    <p class="leader-title">Civil Rights Leader</p>
+                    <blockquote class="leader-quote">
+                        "The time is always right to do what is right."
+                    </blockquote>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-image">🦅</div>
+                    <h3 class="leader-name">John F. Kennedy</h3>
+                    <p class="leader-title">35th President of the United States</p>
+                    <blockquote class="leader-quote">
+                        "Ask not what your country can do for you – ask what you can do for your country."
+                    </blockquote>
+                </div>
+                
+                <div class="leader-card">
+                    <div class="leader-image">🌟</div>
+                    <h3 class="leader-name">Eleanor Roosevelt</h3>
+                    <p class="leader-title">First Lady & Human Rights Activist</p>
+                    <blockquote class="leader-quote">
+                        "The future belongs to those who believe in the beauty of their dreams."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="section">
+        <div class="container">
+            <h2 class="section-title">Leadership Videos</h2>
+            
+            <div class="video-section">
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-placeholder" onclick="window.open('https://youtu.be/My-2-MyxamQ?si=eQh2s_uVLtDGDnZJ', '_blank')">
+                            ▶️
+                        </div>
+                        <h3 class="video-title">Leadership Principles</h3>
+                        <p class="video-description">Essential principles that define great leadership</p>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-placeholder" onclick="window.open('https://youtu.be/8nc2Tk1uu0Q?si=c30VBQGHMEtvtemt', '_blank')">
+                            ▶️
+                        </div>
+                        <h3 class="video-title">Historical Leaders</h3>
+                        <p class="video-description">Documentary on leaders who changed the world</p>
+                    </div>
+                    
+                    <div class="video-card">
+                        <div class="video-placeholder" onclick="window.open('https://youtu.be/eXDNkwIeOqA?si=9eL8xt6Inz9n7cb1', '_blank')">
+                            ▶️
+                        </div>
+                        <h3 class="video-title">Modern Leadership</h3>
+                        <p class="video-description">Leadership in the digital age</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quotes" class="section">
+        <div class="container">
+            <h2 class="section-title">Inspiring Quotes</h2>
+            
+            <div class="quotes-section">
+                <div class="quote-carousel">
+                    <div class="quote-item active">
+                        <p class="quote-text">"The greatest leader is not necessarily the one who does the greatest things. He is the one that gets the people to do the greatest things."</p>
+                        <p class="quote-author">— Ronald Reagan</p>
+                    </div>
+                    
+                    <div class="quote-item">
+                        <p class="quote-text">"A leader is one who knows the way, goes the way, and shows the way."</p>
+                        <p class="quote-author">— John C. Maxwell</p>
+                    </div>
+                    
+                    <div class="quote-item">
+                        <p class="quote-text">"Leadership is not about being in charge. It's about taking care of those in your charge."</p>
+                        <p class="quote-author">— Simon Sinek</p>
+                    </div>
+                    
+                    <div class="quote-item">
+                        <p class="quote-text">"The art of leadership is saying no, not saying yes. It is very easy to say yes."</p>
+                        <p class="quote-author">— Tony Blair</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Leadership Excellence. Inspiring leaders for a better tomorrow.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Quote carousel
+        let currentQuote = 0;
+        const quotes = document.querySelectorAll('.quote-item');
+        
+        function showNextQuote() {
+            quotes[currentQuote].classList.remove('active');
+            currentQuote = (currentQuote + 1) % quotes.length;
+            quotes[currentQuote].classList.add('active');
+        }
+        
+        setInterval(showNextQuote, 4000);
+
+        // Video play function
+        function playVideo(videoId) {
+            alert(`Playing video: ${videoId}\n\nIn a real implementation, this would open the video player with the selected content.`);
+        }
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.parallax');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = Math.random() * 0.5 + 's';
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.leader-card, .video-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add floating animation to hero elements
+        setInterval(() => {
+            const heroContent = document.querySelector('.hero-content');
+            heroContent.style.transform = `translateY(${Math.sin(Date.now() * 0.001) * 10}px)`;
+        }, 16);
+    </script>
+</body>
+</html>
